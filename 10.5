@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct Student {
+    char* surname;
+    char* name;
+    int birthYear;
+    char* group;
+    int rating;
+    char gender;
+};
+
+int main() {
+    struct Student students[50];
+    int numStudents;
+
+    printf("Enter the number of students: ");
+    scanf_s("%d", &numStudents);
+
+
+    for (int i = 0; i < numStudents; i++) {
+        students[i].surname = (char*)malloc(20 * sizeof(char));
+        students[i].name = (char*)malloc(20 * sizeof(char));
+        students[i].group = (char*)malloc(10 * sizeof(char));
+
+        printf("Enter the data for student %d:\n", i + 1);
+        printf("Surname: ");
+        scanf_s("%s", students[i].surname, 20);
+        printf("Name: ");
+        scanf_s("%s", students[i].name, 20);
+        printf("Birth year: ");
+        scanf_s("%d", &students[i].birthYear);
+        printf("Group: ");
+        scanf_s("%s", students[i].group, 10);
+        printf("Rating: ");
+        scanf_s("%d", &students[i].rating);
+        printf("Gender (M/F): ");
+        scanf_s(" %c", &students[i].gender);
+    
+
+
+    printf("\nStudents with rating less than 50:\n");
+    for (int i = 0; i < numStudents; i++) {
+        if (students[i].rating < 50) {
+            printf("%s %c.\n", students[i].surname, students[i].name[0]);
+        }
+    }
+
+    
+    for (int i = 0; i < numStudents; i++) {
+        free(students[i].surname);
+        free(students[i].name);
+        free(students[i].group);
+    }
+    
+    return 0;
+}
