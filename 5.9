@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    int num;
+    printf("Please enter decimal number(0-2048): ");
+    scanf_s("%d", &num);
+
+    if (num < 0 || num > 2048) {
+        printf("The number is out of range 0-2048\n");
+    }
+    else {
+        int binary[32];
+        int i = 0;
+        while (num > 0) {
+            binary[i] = num % 2;
+            num /= 2;
+            i++;
+        }
+        printf("Yout binary number: ");
+        for (int j = i - 1; j >= 0; j--) {
+            printf("%d", binary[j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
