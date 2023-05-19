@@ -57,9 +57,9 @@ int main() {
                         }
 
                     }
-                    
+
                 }
-            
+
             }
 
 
@@ -118,7 +118,51 @@ int main() {
         }
 
     }
+    else if (strcmp(first, "Radiation") == 0){
+        printf("assess the severity of the injury, heavy or light(without visible signs) ");
+        scanf_s("%s", second, sizeof(second));
 
+        if (strcmp(second, "h") == 0) {
+            printf("Before starting any aid, make sure that the scene is safe for you and the victim.\n");
+            printf("Press 'y' to continue");
+            scanf_s("%s", third, sizeof(third));
 
+            if (strcmp(third, "y") == 0) {
+                printf("If possible, call for medical help immediately.\n");
+                printf("Press 'y' to continue");
+                scanf_s("%s", fourth, sizeof(fourth));
+
+                if (strcmp(fourth, "y") == 0) {
+                    printf("Protect yourself: Wear protective clothing such as surgical gloves, a mask, safety glasses and appropriate clothing.");
+                    printf("Press 'y' to continue");
+                    scanf_s("%s", fifth, sizeof(fifth));
+
+                    if (strcmp(fifth, "y") == 0) {
+                        printf("Provide first aid\nSupport and reassure the victim.");
+
+                    }
+
+                }
+
+            }
+        }
+        else if (strcmp(second, "l") == 0) {
+
+            printf("Drink potassium iodide\n");
+            printf("have you been outside");
+            scanf_s("%s", third, sizeof(third));
+
+            if (strcmp(third, "y") == 0) {
+                printf("Get rid of your clothes and take a shower.");
+                }
+                else if (strcmp(third, "n") == 0) {
+                    printf("Drink potassium iodide\n");
+                    printf("Close everything (doors, windows ....)\n");
+                    printf("Stay in safe place and wait for a doctor");
+                }
+            }
+       
+
+        }
     return 0;
 }
