@@ -1,16 +1,159 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
-    float sideLength, volume, surfaceArea;
+    int countYes = 0;
+    char first[20], second[20], third[20], fourth[20], fifth[20];
 
-    printf("Enter the length of a side of the cube: ");
-    scanf_s("%f", &sideLength);
+    printf("Fire, Explosion? ");
+    scanf_s("%s", first, sizeof(first));
 
-    volume = sideLength * sideLength * sideLength;
-    surfaceArea = 6 * sideLength * sideLength;
+    if (strcmp(first, "Fire") == 0) {
+        printf("Is the person conscious? y/n ");
+        scanf_s(" %s", second, sizeof(second));
 
-    printf("The volume of the cube is: %f\n", volume);
-    printf("The surface area of the cube is: %f\n", surfaceArea);
+        while (strcmp(second, "y") != 0 && strcmp(second, "n") != 0) {
+            printf("Invalid input. Please enter 'y' or 'n'.\n");
+            printf("Is the person conscious? y/n ");
+            scanf_s(" %s", second, sizeof(second));
+        }
+
+        if (strcmp(second, "y") == 0) {
+            printf("Start asking questions\n");
+
+            printf("Ask if breathing is difficult, y/n:");
+            scanf_s(" %s", third, sizeof(third));
+
+            while (strcmp(third, "y") != 0 && strcmp(third, "n") != 0) {
+                printf("Invalid input. Please enter 'y' or 'n'.\n");
+                printf("Ask if breathing is difficult, y/n:");
+                scanf_s(" %s", third, sizeof(third));
+            }
+
+            printf("Ask if person feel dizzy?");
+            scanf_s("%s", fourth, sizeof(fourth));
+
+            while (strcmp(fourth, "y") != 0 && strcmp(fourth, "n") != 0) {
+                printf("Invalid input. Please enter 'y' or 'n'.\n");
+                printf("Ask if person feel dizzy?");
+                scanf_s("%s", fourth, sizeof(fourth));
+            }
+
+            printf("Ask if person feel sleepy?");
+            scanf_s("%s", fourth, sizeof(fourth));
+
+            while (strcmp(fourth, "y") != 0 && strcmp(fourth, "n") != 0) {
+                printf("Invalid input. Please enter 'y' or 'n'.\n");
+                printf("Ask if person feel sleepy?");
+                scanf_s("%s", fifth, sizeof(fifth));
+            }
+
+            if (strcmp(third, "y") == 0) {
+                countYes++;
+            }
+
+            if (strcmp(fourth, "y") == 0) {
+                countYes++;
+            }
+
+            if (strcmp(fifth, "y") == 0) {
+                countYes++;
+            }
+
+            if (countYes == 0) {
+                printf("You answered 'no' to all questions. No immediate medical concerns.\n");
+            }
+            else if (countYes == 1) {
+                printf("You answered 'yes' to one question. Monitor your symptoms and consider seeking medical advice if they worsen.\n");
+            }
+            else if (countYes == 2) {
+                printf("You answered 'yes' to two questions. It is advisable to consult a healthcare professional.\n");
+            }
+            else {
+                printf("You have signs of carbon monoxide poisoning.\n");
+            }
+        }
+        else if (strcmp(second, "n") == 0) {
+            printf("Does this person have a pulse? ");
+            scanf_s("%s", third, sizeof(third));
+
+            while (strcmp(third, "y") != 0 && strcmp(third, "n") != 0) {
+                printf("Invalid input. Please enter 'y' or 'n'.\n");
+                printf("Does this person have a pulse? ");
+                scanf_s("%s", third, sizeof(third));
+            }
+
+            if (strcmp(third, "n") == 0) {
+                printf("Immediately start doing slr.\n");
+            }
+            else if (strcmp(third, "y") == 0) {
+                printf("Is the victim breathing?");
+                scanf_s("%s", fourth, sizeof(fourth));
+
+                while (strcmp(fourth, "y") != 0 && strcmp(fourth, "n") != 0) {
+                    printf("Invalid input. Please enter 'y' or 'n'.\n");
+                    printf("Is the victim breathing?");
+                    scanf_s("%s", fourth, sizeof(fourth));
+                }
+
+                if (strcmp(fourth, "y") == 0) {
+                    printf("Check for other injuries and wait for a doctor.\n");
+                }
+                else if (strcmp(fourth, "n") == 0) {
+                    printf("Open the airway and start doing slr.\n");
+                }
+            }
+        }
+    }
+    else if (strcmp(first, "Expl") == 0) {
+        printf("Assess the severity of the injury, heavy or light: ");
+        scanf_s("%s", second, sizeof(second));
+
+        while (strcmp(second, "heavy") != 0 && strcmp(second, "light") != 0) {
+            printf("Invalid input. Please enter 'heavy' or 'light'.\n");
+            printf("Assess the severity of the injury, heavy or light: ");
+            scanf_s("%s", second, sizeof(second));
+        }
+
+        if (strcmp(second, "heavy") == 0) {
+            printf("Try to stop bleeding (use a bandage) and give medicine.\n");
+        }
+        else if (strcmp(second, "light") == 0) {
+            printf("Start asking these questions:\n");
+            printf("- Do you feel nauseous?\n");
+            printf("- Do you have any head injuries?\n");
+            printf("- Are you dizzy?\n");
+            printf("Does the person answer 'yes' or 'no'?");
+            scanf_s("%s", third, sizeof(third));
+
+            while (strcmp(third, "yes") != 0 && strcmp(third, "no") != 0) {
+                printf("Invalid input. Please enter 'yes' or 'no'.\n");
+                printf("Does the person answer 'yes' or 'no'?");
+                scanf_s("%s", third, sizeof(third));
+            }
+
+            if (strcmp(third, "no") == 0) {
+                printf("The person has a contusion.\n");
+            }
+            else if (strcmp(third, "yes") == 0) {
+                printf("Most of the answers are 'yes' or 'no'?");
+                scanf_s("%s", fourth, sizeof(fourth));
+
+                while (strcmp(fourth, "yes") != 0 && strcmp(fourth, "no") != 0) {
+                    printf("Invalid input. Please enter 'yes' or 'no'.\n");
+                    printf("Most of the answers are 'yes' or 'no'?");
+                    scanf_s("%s", fourth, sizeof(fourth));
+                }
+
+                if (strcmp(fourth, "yes") == 0) {
+                    printf("The person has a contusion.\n");
+                }
+                else if (strcmp(fourth, "no") == 0) {
+                    printf("Stay in a safe place and wait for a doctor.\n");
+                }
+            }
+        }
+    }
 
     return 0;
 }
