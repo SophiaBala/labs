@@ -1,0 +1,45 @@
+matrix = [
+    [-12, 7, 23, 13, 4],
+    [67, 15, 34, -5, 9],
+    [2, 5, 17, -23, 45],
+    [26, -6, 23, -5, -9],
+    [18, 37, -8, 26, 12]
+]
+
+def sort_matrix(matrix):
+    for column in range(len(matrix[0])):
+        for i in range(1, len(matrix)):
+            el = matrix[i][column]
+            j = i - 1
+            while j >= 0 and matrix[j][column] < el:
+                matrix[j + 1][column] = matrix[j][column]
+                j -= 1
+            matrix[j + 1][column] = el
+    return matrix
+
+def calculate_f(matrix):
+    f_elements = []
+    for row in matrix:
+        max_value = row[0]
+        for element in row:
+            if element > max_value:
+                max_value = element
+        f_elements.append(max_value)
+    return f_elements
+
+def calculate_F(f_elements):
+    F_elements = 0
+    for value in f_elements:
+        F_elements += value
+
+    return F_elements
+
+row_of_max_elements = calculate_f(matrix)
+sum_of_max_elements = calculate_F(row_of_max_elements)
+
+result = sort_matrix(matrix)
+print("Ваша відсортована матриця:")
+for row in result:
+    print(row)
+
+print(f"\nРядок найбільших елементів матриці: {row_of_max_elements}, їхня сума: {sum_of_max_elements}")
